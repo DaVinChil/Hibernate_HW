@@ -31,6 +31,6 @@ public class ProductFetchRepository {
     }
 
     public List<String> getProductName(String name){
-        return entityManager.createNativeQuery(fetchProductSql).setParameter("customer_name", name).getResultList();
+        return entityManager.createQuery(fetchProductSql).setParameter("customer_name", name).getResultList();
     }
 }
