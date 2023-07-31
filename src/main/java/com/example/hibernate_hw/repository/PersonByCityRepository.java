@@ -18,9 +18,8 @@ public class PersonByCityRepository {
     }
 
     public List<Person> getPersonsByCity(String city) {
-        return (List<Person>) entityManager.createNativeQuery("SELECT * FROM hibernate.persons", Person.class)
-                .getResultStream()
-                .filter(p -> ((Person) p).getCityOfLiving().equals(city))
-                .collect(Collectors.toList());
+        return (List<Person>) entityManager.createQuery("FROM Person WHERE cityOfLiving = :city")
+                .setParameter("city", city)
+                .getResultList();
     }
 }
